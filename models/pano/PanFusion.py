@@ -196,6 +196,7 @@ class PanFusion(PanoGenerator):
 
         os.makedirs(output_dir, exist_ok=True)
         path = os.path.join(output_dir, f"pano.{ext}")
+        print(f"[inference_and_save] saving to: {output_dir}")
         im = Image.fromarray(pano_pred[0, 0])
         im.save(path)
 
@@ -226,3 +227,21 @@ class PanFusion(PanoGenerator):
         log_dict['pano'] = self.temp_wandb_image(
             pano[0, 0], pano_prompt[0] if pano_prompt else None)
         return log_dict
+
+    @torch.no_grad()
+    def predict_step(self, batch, batch_idx, dataloader_idx=0):
+        # Fallback output directory
+        print(f"[predict_step] batch_idx: {batch_idx}")
+        default_dir = os.path.join("logs", os.getenv("WANDB_RUN_ID", "predict_fallback"), "predict")
+        result_dir = getattr(self.hparams, "result_dir", default_dir)
+
+        # Create output folder
+        output_dir = os.path.join(result_dir, f"{batch_idx:04d}")
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Generate and save
+        self.inference_and_save(batch, output_dir, ext='png')
+
+        return {"output_dir": output_dir}
+
+
