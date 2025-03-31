@@ -17,7 +17,7 @@ class DemoDataset(PanoDataset):
 class Demo(PanoDataModule):
     def __init__(
             self,
-            data_dir: str = 'data/demo.txt',
+            data_dir: str = 'data/Demo/captions.txt',
             *args,
             **kwargs
             ):
