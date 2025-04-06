@@ -237,7 +237,7 @@ class PanFusion(PanoGenerator):
         result_dir = "/content/drive/MyDrive/PanFusion_Exports" # getattr(self.hparams, "result_dir", default_dir)
 
         # Create output folder
-        output_dir = os.path.join(result_dir, f"{batch['pano_id'][0]}")
+        output_dir = os.path.join(result_dir, f"{batch['pano_id'][0]}_{batch_idx:04d}")
         os.makedirs(output_dir, exist_ok=True)
 
         # Generate and save
