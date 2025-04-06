@@ -233,7 +233,7 @@ class PanoDataModule(L.LightningDataModule):
             horizon_layout: bool = False,
             manhattan_layout: bool = False,
             layout_cond_type: str = None,
-            repeat_predict: int = 10,
+            repeat_predict: int = 3,
             ):
         super().__init__()
         self.save_hyperparameters()
