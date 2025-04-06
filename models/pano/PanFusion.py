@@ -195,7 +195,8 @@ class PanFusion(PanoGenerator):
         _, pano_pred = self.inference(batch)
 
         os.makedirs(output_dir, exist_ok=True)
-        path = os.path.join(output_dir, f"pano.{ext}")
+        print(f"Mehrab please ensure this looks correct: {batch['pano_id']}\n\t{batch['pano_id'][0]}")
+        path = os.path.join(output_dir, f"{batch['pano_id'][0]}.{ext}")
         print(f"[inference_and_save] saving to: {output_dir}")
         im = Image.fromarray(pano_pred[0, 0])
         im.save(path)
