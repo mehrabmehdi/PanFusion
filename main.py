@@ -65,7 +65,7 @@ def cli_main():
             'num_sanity_val_steps': 0,
             'limit_val_batches': 4,
             'benchmark': True,
-            'max_epochs': 10,
+            'max_epochs': 3,
             'precision': 32,
             'callbacks': [checkpoint_callback, lr_monitor],
             'logger': wandb_logger
