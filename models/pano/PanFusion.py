@@ -234,10 +234,10 @@ class PanFusion(PanoGenerator):
         # Fallback output directory
         print(f"[predict_step] batch_idx: {batch_idx}")
         default_dir = os.path.join("logs", os.getenv("WANDB_RUN_ID", "predict_fallback"), "predict")
-        result_dir = getattr(self.hparams, "result_dir", default_dir)
+        result_dir = "/content/drive/MyDrive/PanFusion_Exports" # getattr(self.hparams, "result_dir", default_dir)
 
         # Create output folder
-        output_dir = os.path.join(result_dir, f"{batch_idx:04d}")
+        output_dir = os.path.join(result_dir, f"{batch['pano_id'][0]}")
         os.makedirs(output_dir, exist_ok=True)
 
         # Generate and save
